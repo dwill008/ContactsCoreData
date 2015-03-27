@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 @interface MyContactsViewController : UITableViewController
 @property (strong) NSMutableArray *contactarray;
+-(void)executeParsing;
 @end

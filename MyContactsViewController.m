@@ -11,9 +11,13 @@
 #import "Delegate.h"
 @interface MyContactsViewController ()
 
+@property (strong) NSManagedObject *contactdb;
+
 @end
 
 @implementation MyContactsViewController
+@synthesize contactdb;
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;
@@ -25,11 +29,55 @@
 }
 
 
+-(void)executeParsing{
+    @autoreleasepool {
+        NSString *file = @(__FILE__);
+        file = [[file stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Top_10_Rides_Content_pictureReplaced.csv"];
+        
+        NSLog(@"Beginning...");
+        NSStringEncoding encoding = 0;
+        NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
+        CHCSVParser * p = [[CHCSVParser alloc] initWithInputStream:stream usedEncoding:&encoding delimiter:','];
+        [p setRecognizesBackslashesAsEscapes:YES];
+        [p setSanitizesFields:YES];
+        
+        NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
+        
+        Delegate * d = [[Delegate alloc] init];
+        [p setDelegate:d];
+        
+        NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+        [p parse];
+        NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
+        
+        NSLog(@"raw difference: %f", (end-start));
+        
+        NSLog(@"%@", [d lines]);
+        
+        NSInteger size = [[d lines ]count];
+        
+        NSManagedObjectContext *context = [self managedObjectContext];
+        
+        
+        
+        for (NSInteger i = 1; i < size; i++){
+            NSArray *temp = [[d lines] objectAtIndex:i];
+            NSString *str = [temp objectAtIndex:0];
+            if (!self.contactdb){
+                NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Contacts" inManagedObjectContext:context];
+                [newDevice setValue:str forKey:@"fullname"];
+                [newDevice setValue:@"666" forKey:@"email"];
+                [newDevice setValue:@"222" forKey:@"phone"];
+            }
+        }
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Delegate *d = [ [Delegate alloc] init ];
-    [d executeParsing];
+    [self executeParsing];
     NSLog(@"abc");
     
 }
