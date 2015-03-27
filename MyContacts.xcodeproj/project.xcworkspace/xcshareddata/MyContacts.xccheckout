@@ -12,6 +12,10 @@
 	<dict>
 		<key>1DA6090B1E93A5BE732D84669259EA8F9ECCC4E0</key>
 		<string>https://github.com/ioscourse/MyContacts-CoreData.git</string>
+		<key>63BA3B73E742E46A0D877B10394C54D937A7B04C</key>
+		<string>https://github.com/dwill008/ContactsCoreData.git</string>
+		<key>ABCC79E8EA98CEECFC050B06EC00AE6311B5D42E</key>
+		<string>https://github.com/dwill008/ContactsCoreData.git</string>
 		<key>E26B605B-2E4E-4D11-A386-227827FF6EC3</key>
 		<string>https://github.com/ioscourse/MyContacts-CoreData.git</string>
 	</dict>
@@ -20,18 +24,30 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1DA6090B1E93A5BE732D84669259EA8F9ECCC4E0</key>
+		<string>../../../MyContacts-CoreData</string>
+		<key>63BA3B73E742E46A0D877B10394C54D937A7B04C</key>
+		<string>../../../CHCSVParser-master</string>
+		<key>ABCC79E8EA98CEECFC050B06EC00AE6311B5D42E</key>
 		<string>../..</string>
 		<key>E26B605B-2E4E-4D11-A386-227827FF6EC3</key>
 		<string>../../../MyContacts</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/ioscourse/MyContacts-CoreData.git</string>
+	<string>https://github.com/dwill008/ContactsCoreData.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1DA6090B1E93A5BE732D84669259EA8F9ECCC4E0</string>
+	<string>ABCC79E8EA98CEECFC050B06EC00AE6311B5D42E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>63BA3B73E742E46A0D877B10394C54D937A7B04C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CHCSVParser-master</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
@@ -47,6 +63,14 @@
 			<string>1DA6090B1E93A5BE732D84669259EA8F9ECCC4E0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MyContacts-CoreData</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ABCC79E8EA98CEECFC050B06EC00AE6311B5D42E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyContacts-CoreData-master</string>
 		</dict>
 	</array>
 </dict>

@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Delegate *d = [ [Delegate alloc]init ];
+    Delegate *d = [ [Delegate alloc] init ];
     [d executeParsing];
     NSLog(@"abc");
     

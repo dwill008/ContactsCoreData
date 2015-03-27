@@ -25,8 +25,8 @@
 		124F628E1830585B00486EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 124F628D1830585B00486EB0 /* Main.storyboard */; };
 		124F629118305D0500486EB0 /* MyContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124F629018305D0500486EB0 /* MyContactsViewController.m */; };
 		124F629418305FF900486EB0 /* MyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124F629318305FF900486EB0 /* MyDetailViewController.m */; };
-		9D9999AF1AC5099A00DCA974 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999AE1AC5099A00DCA974 /* CHCSVParser.m */; };
 		9D9999B31AC50AD400DCA974 /* Delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999B21AC50AD400DCA974 /* Delegate.m */; };
+		9D9999B61AC5147F00DCA974 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999B41AC5147F00DCA974 /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +63,10 @@
 		124F629018305D0500486EB0 /* MyContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactsViewController.m; sourceTree = "<group>"; };
 		124F629218305FF900486EB0 /* MyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDetailViewController.h; sourceTree = "<group>"; };
 		124F629318305FF900486EB0 /* MyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDetailViewController.m; sourceTree = "<group>"; };
-		9D9999AD1AC5099A00DCA974 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = "../../Desktop/CHCSVParser-master/CHCSVParser/CHCSVParser/CHCSVParser.h"; sourceTree = "<group>"; };
-		9D9999AE1AC5099A00DCA974 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHCSVParser.m; path = "../../Desktop/CHCSVParser-master/CHCSVParser/CHCSVParser/CHCSVParser.m"; sourceTree = "<group>"; };
 		9D9999B11AC50AD400DCA974 /* Delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delegate.h; sourceTree = "<group>"; };
 		9D9999B21AC50AD400DCA974 /* Delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Delegate.m; sourceTree = "<group>"; };
+		9D9999B41AC5147F00DCA974 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		9D9999B51AC5147F00DCA974 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,8 +178,8 @@
 		9D9999B01AC509A200DCA974 /* CSVParser */ = {
 			isa = PBXGroup;
 			children = (
-				9D9999AD1AC5099A00DCA974 /* CHCSVParser.h */,
-				9D9999AE1AC5099A00DCA974 /* CHCSVParser.m */,
+				9D9999B41AC5147F00DCA974 /* CHCSVParser.m */,
+				9D9999B51AC5147F00DCA974 /* CHCSVParser.h */,
 			);
 			name = CSVParser;
 			sourceTree = "<group>";
@@ -284,10 +284,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D9999B61AC5147F00DCA974 /* CHCSVParser.m in Sources */,
 				124F62671830564200486EB0 /* main.m in Sources */,
 				124F629418305FF900486EB0 /* MyDetailViewController.m in Sources */,
 				9D9999B31AC50AD400DCA974 /* Delegate.m in Sources */,
-				9D9999AF1AC5099A00DCA974 /* CHCSVParser.m in Sources */,
 				124F629118305D0500486EB0 /* MyContactsViewController.m in Sources */,
 				124F626B1830564200486EB0 /* MyContactsAppDelegate.m in Sources */,
 				124F626E1830564200486EB0 /* MyContacts.xcdatamodeld in Sources */,
