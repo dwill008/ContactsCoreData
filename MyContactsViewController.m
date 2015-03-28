@@ -63,11 +63,16 @@
         for (NSInteger i = 1; i < size; i++){
             NSArray *temp = [[d lines] objectAtIndex:i];
             NSString *str = [temp objectAtIndex:0];
+            NSString *imgURL = [temp objectAtIndex:10];
             if (!self.contactdb){
                 NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Contacts" inManagedObjectContext:context];
                 [newDevice setValue:str forKey:@"fullname"];
                 [newDevice setValue:@"666" forKey:@"email"];
                 [newDevice setValue:@"222" forKey:@"phone"];
+                [newDevice setValue:imgURL forKey:@"imgURL"];
+            }else{
+                [self.contactdb setValue:str forKey:@"fullname"];
+                [self.contactdb setValue:imgURL forKey:@"imgURL"];
             }
         }
     }
@@ -115,12 +120,16 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    tableView.rowHeight = 250;
     // Configure the cell...
     NSManagedObject *device = [self.contactarray objectAtIndex:indexPath.row];
     //[cell.textLabel setText:[NSString stringWithFormat:@"%@ %@", [device valueForKey:@"fullname"], [device valueForKey:@"email"]]];
      [cell.detailTextLabel setText:[device valueForKey:@"phone"]];
      [cell.textLabel setText:[NSString stringWithFormat:@"%@", [device valueForKey:@"fullname"]]];
+    //UIImage *bgImage = [UIImage imageNamed:@"IDMXMmPB.jpeg"];
+    NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
     return cell;
 }
 

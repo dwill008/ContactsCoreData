@@ -25,6 +25,7 @@
 		124F628E1830585B00486EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 124F628D1830585B00486EB0 /* Main.storyboard */; };
 		124F629118305D0500486EB0 /* MyContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124F629018305D0500486EB0 /* MyContactsViewController.m */; };
 		124F629418305FF900486EB0 /* MyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124F629318305FF900486EB0 /* MyDetailViewController.m */; };
+		9D58BC311AC648A6003B4B2E /* IDMXMmPB.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D58BC301AC648A6003B4B2E /* IDMXMmPB.jpeg */; };
 		9D9999B31AC50AD400DCA974 /* Delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999B21AC50AD400DCA974 /* Delegate.m */; };
 		9D9999B61AC5147F00DCA974 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999B41AC5147F00DCA974 /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		124F629018305D0500486EB0 /* MyContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactsViewController.m; sourceTree = "<group>"; };
 		124F629218305FF900486EB0 /* MyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDetailViewController.h; sourceTree = "<group>"; };
 		124F629318305FF900486EB0 /* MyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDetailViewController.m; sourceTree = "<group>"; };
+		9D58BC301AC648A6003B4B2E /* IDMXMmPB.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IDMXMmPB.jpeg; sourceTree = "<group>"; };
 		9D9999B11AC50AD400DCA974 /* Delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delegate.h; sourceTree = "<group>"; };
 		9D9999B21AC50AD400DCA974 /* Delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Delegate.m; sourceTree = "<group>"; };
 		9D9999B41AC5147F00DCA974 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		124F624C1830564200486EB0 = {
 			isa = PBXGroup;
 			children = (
+				9D58BC301AC648A6003B4B2E /* IDMXMmPB.jpeg */,
 				9D9999B11AC50AD400DCA974 /* Delegate.h */,
 				9D9999B21AC50AD400DCA974 /* Delegate.m */,
 				9D9999B01AC509A200DCA974 /* CSVParser */,
@@ -266,6 +269,7 @@
 				124F628E1830585B00486EB0 /* Main.storyboard in Resources */,
 				124F62651830564200486EB0 /* InfoPlist.strings in Resources */,
 				124F62701830564200486EB0 /* Images.xcassets in Resources */,
+				9D58BC311AC648A6003B4B2E /* IDMXMmPB.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
