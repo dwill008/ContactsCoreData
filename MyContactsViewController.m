@@ -64,16 +64,24 @@
             NSArray *temp = [[d lines] objectAtIndex:i];
             NSString *str = [temp objectAtIndex:0];
             NSString *imgURL = [temp objectAtIndex:10];
+            NSNumber *number = [NSNumber numberWithInt:i];
             if (!self.contactdb){
                 NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Contacts" inManagedObjectContext:context];
+                [newDevice setValue:number forKey:@"id"];
                 [newDevice setValue:str forKey:@"fullname"];
                 [newDevice setValue:@"666" forKey:@"email"];
                 [newDevice setValue:@"222" forKey:@"phone"];
                 [newDevice setValue:imgURL forKey:@"imgURL"];
             }else{
+                [self.contactdb setValue:number forKey:@"id"];
                 [self.contactdb setValue:str forKey:@"fullname"];
                 [self.contactdb setValue:imgURL forKey:@"imgURL"];
             }
+        }
+        NSError *error = nil;
+        // Save the object to persistent store
+        if (![context save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
     }
 }
@@ -82,9 +90,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self executeParsing];
+    //[self executeParsing];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contacts"];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
     self.contactarray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     
     [self.tableView reloadData];

@@ -3,10 +3,11 @@
     <entity name="Contacts" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="imgURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contacts" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Contacts" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>
