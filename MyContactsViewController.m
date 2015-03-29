@@ -31,13 +31,23 @@
 
 -(void)executeParsing{
     @autoreleasepool {
-        NSString *file = @(__FILE__);
-        file = [[file stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Top_10_Rides_Content_pictureReplaced.csv"];
+        //NSString *file = @(__FILE__);
+        //file = [[file stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Top_10_Rides_Content_pictureReplaced.csv"];
+        //NSString *file;
+        //file = @"https://drive.google.com/file/d/0BzxR2Xc3LZ7MRl9CSkJrUm5iLVU/view?usp=sharing";
+        
+        NSString *url = @"https://www.filepicker.io/api/file/w5eur5N6QmuK8znclVWf";
+        NSData *responseData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        NSString *file = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] ;
+        //NSString *robots = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://www.filepicker.io/api/file/w5eur5N6QmuK8znclVWf"] encoding:NSUTF8StringEncoding error:nil];
+        //NSString *file = @"/var/mobile/Containers/Bundle/Application/31AB2441-9139-43B2-9722-C08C037EF052/MyContacts.app/Top_10_Rides_Content_pictureReplaced.csv";
+        //NSString *file = @"https://www.filepicker.io/api/file/w5eur5N6QmuK8znclVWf";
+        
         
         NSLog(@"Beginning...");
         NSStringEncoding encoding = 0;
-        NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
-        CHCSVParser * p = [[CHCSVParser alloc] initWithInputStream:stream usedEncoding:&encoding delimiter:','];
+        //NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
+        CHCSVParser * p = [[CHCSVParser alloc] initWithCSVString:file];
         [p setRecognizesBackslashesAsEscapes:YES];
         [p setSanitizesFields:YES];
         
@@ -78,11 +88,11 @@
                 [self.contactdb setValue:imgURL forKey:@"imgURL"];
             }
         }
-        NSError *error = nil;
+        //NSError *error = nil;
         // Save the object to persistent store
-        if (![context save:&error]) {
-            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-        }
+        //if (![context save:&error]) {
+        //    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        //}
     }
 }
 
@@ -90,7 +100,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self executeParsing];
+    [self executeParsing];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contacts"];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
@@ -114,6 +124,7 @@
     
     [self.tableView reloadData];
 }*/
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -144,8 +155,11 @@
      [cell.detailTextLabel setText:[device valueForKey:@"phone"]];
      [cell.textLabel setText:[NSString stringWithFormat:@"%@", [device valueForKey:@"fullname"]]];
     //UIImage *bgImage = [UIImage imageNamed:@"IDMXMmPB.jpeg"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"IDMXMmPB" ofType:@"jpeg"];
+    UIImage *bgImage =[[UIImage alloc] initWithContentsOfFile:path];
     NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+    //cell.backgroundView = [[UIImageView alloc] initWithImage: bgImage];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
     return cell;
 }

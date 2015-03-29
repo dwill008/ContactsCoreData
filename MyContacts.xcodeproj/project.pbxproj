@@ -28,6 +28,7 @@
 		9D58BC311AC648A6003B4B2E /* IDMXMmPB.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D58BC301AC648A6003B4B2E /* IDMXMmPB.jpeg */; };
 		9D9999B31AC50AD400DCA974 /* Delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999B21AC50AD400DCA974 /* Delegate.m */; };
 		9D9999B61AC5147F00DCA974 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9999B41AC5147F00DCA974 /* CHCSVParser.m */; };
+		9DEB35781AC8AC270070C0F3 /* Top_10_Rides_Content_pictureReplaced.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9DEB35771AC8AC270070C0F3 /* Top_10_Rides_Content_pictureReplaced.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		9D9999B21AC50AD400DCA974 /* Delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Delegate.m; sourceTree = "<group>"; };
 		9D9999B41AC5147F00DCA974 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		9D9999B51AC5147F00DCA974 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		9DEB35771AC8AC270070C0F3 /* Top_10_Rides_Content_pictureReplaced.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Top_10_Rides_Content_pictureReplaced.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		124F624C1830564200486EB0 = {
 			isa = PBXGroup;
 			children = (
+				9DEB35771AC8AC270070C0F3 /* Top_10_Rides_Content_pictureReplaced.csv */,
 				9D58BC301AC648A6003B4B2E /* IDMXMmPB.jpeg */,
 				9D9999B11AC50AD400DCA974 /* Delegate.h */,
 				9D9999B21AC50AD400DCA974 /* Delegate.m */,
@@ -236,9 +239,10 @@
 				ORGANIZATIONNAME = "Chuck Konkol";
 				TargetAttributes = {
 					124F62541830564200486EB0 = {
-						DevelopmentTeam = LAK6SGQ7Q5;
+						DevelopmentTeam = 2A24775PKD;
 					};
 					124F62741830564200486EB0 = {
+						DevelopmentTeam = 2A24775PKD;
 						TestTargetID = 124F62541830564200486EB0;
 					};
 				};
@@ -270,6 +274,7 @@
 				124F62651830564200486EB0 /* InfoPlist.strings in Resources */,
 				124F62701830564200486EB0 /* Images.xcassets in Resources */,
 				9D58BC311AC648A6003B4B2E /* IDMXMmPB.jpeg in Resources */,
+				9DEB35781AC8AC270070C0F3 /* Top_10_Rides_Content_pictureReplaced.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +424,7 @@
 				GCC_PREFIX_HEADER = "MyContacts/MyContacts-Prefix.pch";
 				INFOPLIST_FILE = "MyContacts/MyContacts-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "afe3ab53-d1bc-40a3-8789-42501df08d63";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -435,7 +440,7 @@
 				GCC_PREFIX_HEADER = "MyContacts/MyContacts-Prefix.pch";
 				INFOPLIST_FILE = "MyContacts/MyContacts-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "afe3ab53-d1bc-40a3-8789-42501df08d63";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
