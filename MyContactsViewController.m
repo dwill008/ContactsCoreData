@@ -88,11 +88,11 @@
                 [self.contactdb setValue:imgURL forKey:@"imgURL"];
             }
         }
-        //NSError *error = nil;
+        NSError *error = nil;
         // Save the object to persistent store
-        //if (![context save:&error]) {
-        //    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-        //}
+        if (![context save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
     }
 }
 
@@ -100,14 +100,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self executeParsing];
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contacts"];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
     
-    self.contactarray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    if ([self dataCount] == 0){
+        [self executeParsing];
+        [self dataCount];
+    }
     
     [self.tableView reloadData];
     NSLog(@"abc");
@@ -124,6 +121,29 @@
     
     [self.tableView reloadData];
 }*/
+
+- (NSInteger)dataCount{
+    
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contacts"];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    self.contactarray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    return self.contactarray.count;
+}
+
+- (void)requestData{
+    
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contacts"];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+}
 
 - (void)didReceiveMemoryWarning
 {
