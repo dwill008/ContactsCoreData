@@ -9,6 +9,7 @@
 #import "MyContactsViewController.h"
 #import "MyDetailViewController.h"
 #import "Delegate.h"
+
 @interface MyContactsViewController ()
 
 @property (strong) NSManagedObject *contactdb;
@@ -175,12 +176,23 @@
      [cell.detailTextLabel setText:[device valueForKey:@"phone"]];
      [cell.textLabel setText:[NSString stringWithFormat:@"%@", [device valueForKey:@"fullname"]]];
     //UIImage *bgImage = [UIImage imageNamed:@"IDMXMmPB.jpeg"];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"IDMXMmPB" ofType:@"jpeg"];
-    UIImage *bgImage =[[UIImage alloc] initWithContentsOfFile:path];
-    NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"IDMXMmPB" ofType:@"jpeg"];
+    //UIImage *bgImage =[[UIImage alloc] initWithContentsOfFile:path];
+    //NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
+    //NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
     //cell.backgroundView = [[UIImageView alloc] initWithImage: bgImage];
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+    //cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^{
+        NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+        UIImage *image = [UIImage imageWithData:imageData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.backgroundView = [[UIImageView alloc] initWithImage:image];
+        });
+    });
+    
     return cell;
 }
 
