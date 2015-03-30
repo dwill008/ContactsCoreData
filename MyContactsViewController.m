@@ -115,7 +115,15 @@
         [self dataCount];
     }
     
-    [self.tableView reloadData];
+    for (NSInteger i = 0; i < self.contactarray.count; i++){
+        NSManagedObject *device = [self.contactarray objectAtIndex:i];
+        NSString *imgURL = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:imgURL]];
+        UIImage *image = [UIImage imageWithData:imageData];
+        [self.cachedImages setValue:image forKey:[device valueForKey:@"fullname"]];
+    }
+    
+    
     NSLog(@"abc");
     
 }
@@ -177,7 +185,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    tableView.rowHeight = 250;
+    tableView.rowHeight = 255;
     // Configure the cell...
     
     NSManagedObject *device = [self.contactarray objectAtIndex:indexPath.row];
@@ -195,7 +203,11 @@
     NSString *identifier = [NSString stringWithFormat:@"Cell%ld", (long)indexPath.row];
     
     //NSLog(identifier);
-    if ([self.cachedImages objectForKey:identifier]){
+    
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[self.cachedImages objectForKey:[device valueForKey:@"fullname"]]];
+    
+    /*if ([self.cachedImages objectForKey:identifier]){
         cell.backgroundView = [[UIImageView alloc] initWithImage:[self.cachedImages objectForKey:identifier]];
     }else{
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
@@ -210,7 +222,7 @@
                 }
             });
         });
-    }
+    }*/
     
     
     
