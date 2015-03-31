@@ -71,13 +71,12 @@
         NSManagedObjectContext *context = [self managedObjectContext];
         
         
-        
-        
         for (NSInteger i = 1; i < size; i++){
             NSArray *temp = [[d lines] objectAtIndex:i];
             NSString *str = [temp objectAtIndex:0];
             NSString *imgURL = [temp objectAtIndex:10];
             NSNumber *number = [NSNumber numberWithInt:i];
+            
             if (!self.contactdb){
                 NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Contacts" inManagedObjectContext:context];
                 [newDevice setValue:number forKey:@"id"];
@@ -85,35 +84,53 @@
                 [newDevice setValue:@"666" forKey:@"email"];
                 [newDevice setValue:@"222" forKey:@"phone"];
                 [newDevice setValue:imgURL forKey:@"imgURL"];
-                
             }else{
                 [self.contactdb setValue:number forKey:@"id"];
                 [self.contactdb setValue:str forKey:@"fullname"];
                 [self.contactdb setValue:imgURL forKey:@"imgURL"];
             }
-            
         }
+        
         NSError *error = nil;
         // Save the object to persistent store
         if (![context save:&error]) {
             NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
         
-        
     }
 }
 
+- (void)loadImage{
+    
+    for (NSManagedObject *obj in self.contactarray){
+        
+        NSString *imgURL = [obj valueForKey:@"imgURL"];
+        NSString *str = [obj valueForKey:@"fullname"];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:imgURL]];
+            UIImage *image = [UIImage imageWithData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.cachedImages setObject: image forKey:str];
+            });
+        });
+    
+    }
+    
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.cachedImages = [[NSMutableDictionary alloc] init];
-    
     if ([self dataCount] == 0){
         [self executeParsing];
         [self dataCount];
     }
+    
+    [self loadImage];
     
     [self.tableView reloadData];
     NSLog(@"abc");
@@ -130,6 +147,8 @@
     
     [self.tableView reloadData];
 }*/
+
+
 
 - (NSInteger)dataCount{
     
@@ -187,7 +206,7 @@
     //UIImage *bgImage = [UIImage imageNamed:@"IDMXMmPB.jpeg"];
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"IDMXMmPB" ofType:@"jpeg"];
     //UIImage *bgImage =[[UIImage alloc] initWithContentsOfFile:path];
-    //NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
+    NSString *url = [NSString stringWithFormat:@"%@", [device valueForKey:@"imgURL"]];
     //NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
     //cell.backgroundView = [[UIImageView alloc] initWithImage: bgImage];
     //cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
@@ -195,7 +214,28 @@
     NSString *identifier = [NSString stringWithFormat:@"Cell%ld", (long)indexPath.row];
     
     //NSLog(identifier);
-    if ([self.cachedImages objectForKey:identifier]){
+    
+    /*if ([self.cachedImages objectForKey:identifier]){
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[self.cachedImages objectForKey:identifier]];
+    }else{
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+            UIImage *image = [UIImage imageWithData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //UIImage *image = [UIImage imageWithData:imageData];
+                if ([tableView indexPathForCell:cell].row == indexPath.row){
+                    [self.cachedImages setObject:image forKey:identifier];
+                    cell.backgroundView = [[UIImageView alloc] initWithImage:image];
+                }
+            });
+        });
+    }*/
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[self.cachedImages objectForKey:[device valueForKey:@"fullname"]]];
+    
+    
+    /*if ([self.cachedImages objectForKey:identifier]){
         cell.backgroundView = [[UIImageView alloc] initWithImage:[self.cachedImages objectForKey:identifier]];
     }else{
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
@@ -210,13 +250,7 @@
                 }
             });
         });
-    }
-    
-    
-    
-    
-    
-    
+    }*/
     
     /*dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
